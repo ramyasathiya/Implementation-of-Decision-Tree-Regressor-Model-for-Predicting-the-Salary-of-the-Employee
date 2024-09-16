@@ -17,11 +17,12 @@ To write a program to implement the Decision Tree Regressor Model for Predicting
 ```
 /*
 Program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee.
-Developed by: 
-RegisterNumber:  
+Developed by: RAMYA S
+RegisterNumber:  212222040130
 */
 ```
 import pandas as pd
+```
 from sklearn.datasets import load_iris
 from sklearn.linear_model import SGDClassifier
 from sklearn.model_selection import train_test_split
@@ -30,6 +31,7 @@ iris=load_iris()
 df=pd.DataFrame(data=iris.data, columns=iris.feature_names)
 df['target']=iris.target
 print(df.head())
+```
 ![image](https://github.com/user-attachments/assets/b7e453ff-373c-463f-a8e4-9551d1206a7d)
 
 ```
