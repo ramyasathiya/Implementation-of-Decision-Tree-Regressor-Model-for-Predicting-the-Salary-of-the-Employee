@@ -8,10 +8,10 @@ To write a program to implement the Decision Tree Regressor Model for Predicting
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1. 
-2. 
-3. 
-4. 
+1. Import the libraries and read the data frame using pandas.
+2. Calculate the null values present in the dataset and apply label encoder.
+3. Determine test and training data set and apply decison tree regression in dataset.
+4. calculate Mean square error,data prediction and r2.
 
 ## Program:
 ```
@@ -21,46 +21,73 @@ Developed by: RAMYA S
 RegisterNumber:  212222040130
 */
 ```
+```
 import pandas as pd
-```
-from sklearn.datasets import load_iris
-from sklearn.linear_model import SGDClassifier
+
+data=pd.read_csv("/content/Salary.csv")
+
+data.head()
+
+data.info()
+
+data.isnull().sum()
+
+from sklearn.preprocessing import LabelEncoder
+
+le=LabelEncoder()
+
+data["Position"]=le.fit_transform(data["Position"])
+
+data.head()
+
+x=data[["Position", "Level"]]
+
+y=data["Salary"]
+
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score,confusion_matrix
-iris=load_iris()
-df=pd.DataFrame(data=iris.data, columns=iris.feature_names)
-df['target']=iris.target
-print(df.head())
-```
-![image](https://github.com/user-attachments/assets/b7e453ff-373c-463f-a8e4-9551d1206a7d)
 
-```
-x=df.drop('target',axis=1)
-y=df['target']
-```
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=0)
-```
-sgd_clf=SGDClassifier(max_iter=1000,tol=1e-3)
-sgd_clf.fit(x_train,y_train)
-y_pred=sgd_clf.predict(x_test)
-accuracy=accuracy_score(y_test,y_pred)
-print(f"Accuracy: {accuracy:.3f}")
-```
-![image](https://github.com/user-attachments/assets/8ae00958-32ac-4790-83c4-6b2bbbf8533a)
+x_train,x_test,y_train, y_test=train_test_split(x, y, test_size=0.2, random_state=2)
 
-```
-cm=confusion_matrix(y_test,y_pred)
-print("Confusion Matrix:")
-print(cm)
-```
-![image](https://github.com/user-attachments/assets/16075ec2-4943-4774-a787-f9cd9a49fdf1)
+from sklearn.tree import DecisionTreeRegressor
 
+dt=Decision TreeRegressor()
 
+dt.fit(x_train, y_train)
+
+y_pred=dt.predict(x_test)
+
+from sklearn import metrics
+
+mse=metrics.mean_squared_error(y_test,y_pred) mse
+
+462500000.0
+
+r2=metrics.r2_score(y_test,y_pred)
+
+r2
+
+0.48611111111111116
+
+dt.predict([[5,6]])
+
+/usr/local/lib/python3.7/dist-packages/sklearn/
+
+"X does not have valid feature names, but" array ([200000.])
 
 ```
 
 ## Output:
-![Decision Tree Regressor Model for Predicting the Salary of the Employee](sam.png)
+![image](https://github.com/user-attachments/assets/b7adc02f-3d9f-402e-8449-bbeac322d8a7)
+![image](https://github.com/user-attachments/assets/2065aa35-23e8-4ba2-823b-4db77be1a90f)
+![image](https://github.com/user-attachments/assets/f9000e5c-a572-4d45-94c2-0b81399be0d0)
+
+
+
+
+
+
+
+
 
 
 ## Result:
